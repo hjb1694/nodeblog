@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<%- include('partials/head') %>
+<body>
+    <!-- Header -->
+    <%- include('partials/header') %>
+    <main class="p-1">
+        <form class="register-form card">
+            <h1 class="heading-primary">Login</h1>
+            <div class="fgrp">
+                <label class="label" for="username">Username</label>
+                <input type="text" id="username" name="username" class="input--text" maxlength="15"/>
+            </div>
+            <div class="fgrp">
+                <label class="label" for="password">Password</label>
+                <input type="password" id="password" name="password" class="input--text" maxlength="50"/>
+            </div>
+            <div class="fgrp">
+                <button type="submit" id="subbut" class="btn btn--primary">Login</button>
+            </div>
+            <div class="errbox"></div>
+        </form>
+    </main>
+    <footer class="footer">
+        <small class="footer__copyright">&copy; 2019</small>
+    </footer>
+    <script src="/validator.min.js"></script>
+    <script type="application/javascript">
+        document.querySelector('.header__navtoggle').addEventListener('click',()=>{
+
+            document.querySelector('.header--two').classList.toggle('show');
+
+        });
+
+        const errbox = document.querySelector('.errbox');
+
+        document.querySelector('#subbut').addEventListener('click',e => {
+
+            errbox.innerHTML = '';
+
+            e.preventDefault();
+
+            const fields = {
+                _csrf : '<%= csrfToken %>', 
+                username : document.querySelector('#username').value.trim(), 
+                password : document.querySelector('#password').value
+            }
+
+            fetch('/user/login',{
+                method : 'POST', 
+                credentials : 'same-origin',
+                headers : {
+                    'Content-Type' : 'application/json'
+                }, 
+                body : JSON.stringify(fields)
+            })
+            .then(resp => {
+                if(!resp.ok){
+                    throw new Error('unable to process request');
+                }
+
+                return resp.json();
+            })
+            .then(resp => {
+                console.log(resp);
+                if(resp.errors){
+                    for(err of resp.errors){
+
+                        errbox.appendAdjacentHTML('beforeend','<p>'+ err.msg +'</p>');
+
+                    }
+                }else{
+
+                    window.location.href = '/';
+
+                }
+            })
+            .catch(err => {
+
+                errbox.innerHTML = '<p>There was an issue processing your request.</p>';
+
+            });
+
+        });
+    </script>
+</body>
+</html>

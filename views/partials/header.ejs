@@ -1,0 +1,19 @@
+<header class="header">
+    <div class="header--one">
+        <div class="header__logo-box">
+            <a href="/" class="header__logo">myBlog</a>
+        </div>
+        <i class="header__navtoggle fa fa-bars"></i>
+    </div>
+    <div class="header--two">
+        <nav class="header__nav">
+            <% if(!isLoggedIn){ %>
+            <a href="/user/create" class="header__nav-item">Register</a>
+            <a href="/user/login" class="header__nav-item">Login</a>
+            <%} else { %>
+            <a href="#" class="header__nav-item">Admin</a>
+            <a href="/user/logout" class="header__nav-item">Logout</a>
+            <% } %>
+        </nav>
+    </div>
+</header>

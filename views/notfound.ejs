@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<%- include('partials/head') %>
+<body>
+    <!-- Header -->
+    <%- include('partials/header') %>
+    <main>
+        <div class="p-1" style="min-height:80vh;">
+            <h1 class="heading-primary mt-1">:( 404 Not Found</h1>
+        </div>
+    </main>
+    <footer class="footer">
+        <small class="footer__copyright">&copy; 2019</small>
+    </footer>
+    <script type="application/javascript">
+        document.querySelector('.header__navtoggle').addEventListener('click',()=>{
+
+            document.querySelector('.header--two').classList.toggle('show');
+
+        });
+    </script>
+</body>
+</html>

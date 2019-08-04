@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Head -->
+<%- include('partials/head') %>
+<body>
+    <!-- Header -->
+    <%- include('partials/header') %>
+    <main>
+        <div class="home-container">
+            <div class="home-container--one">
+                <h1 class="heading-primary">Welcome!</h1>
+                <div class="post-view card mt-1">
+                        <h1 class="post-view__heading"><%= post.title %></h1>
+                        <p class="post-view__author">by <%= post.author_username %></p>
+                        <p class="post-view__date"><%= post.created_date %></p>
+                        <div class="post-view__img mt-1" style="background-image:url(/uploads/<%= post.image %>)"></div>
+                        <div class="post-view__content mt-1"><%= post.content %>%></div>
+                </div>
+                <div class="comment-box card mt-1">
+                <% if(!isLoggedIn) { %>
+    
+                    <p class="comment-box__signinmsg">Please <a href="/user/login">sign in</a> or <a href="/user/create">register</a> to post a comment.</p>
+
+                <% }else{ %>
+
+                    <h2 class="heading-secondary">Submit a Comment</h2>
+                    <form>
+                        <div class="fgrp">
+                            <textarea class="input--textarea" rows="8"></textarea>
+                        </div>
+                        <div class="fgrp">
+                            <button class="btn btn--primary">Submit</button>
+                        </div>
+                    </form>
+                <% } %>
+                </div>
+            </div>
+            <div class="home-container--two">
+                <div class="card">
+                    <h2 class="heading-secondary"><i class="fa fa-search"></i> Search</h2>
+                    <form action="">
+                        <div class="fgrp">
+                            <input type="text" class="input--text" placeholder="Search Terms...">
+                        </div>
+                        <div class="fgrp">
+                            <button class="btn btn--primary">Go</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <small class="footer__copyright">&copy; 2019</small>
+    </footer>
+    <script type="application/javascript">
+        document.querySelector('.header__navtoggle').addEventListener('click',()=>{
+
+            document.querySelector('.header--two').classList.toggle('show');
+
+        });
+    </script>
+</body>
+</html>

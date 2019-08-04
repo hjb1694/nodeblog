@@ -1,0 +1,27 @@
+{
+  "name": "nodeblog",
+  "version": "1.0.0",
+  "description": "This is a practice project created with node",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "watch-sass": "node-sass -w ./sass/main.scss ./public/style.css"
+  },
+  "author": "Hayden Bradfield",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "csurf": "^1.10.0",
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "express-mysql-session": "^2.1.0",
+    "express-session": "^1.16.1",
+    "express-validator": "^5.3.1",
+    "mysql2": "^1.6.5",
+    "validator": "^10.11.0"
+  },
+  "devDependencies": {
+    "node-sass": "^4.12.0"
+  }
+}
